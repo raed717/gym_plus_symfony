@@ -13,7 +13,7 @@ class ViewController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('view/index.html.twig', [
+        return $this->render('Front/index.html.twig', [
             'controller_name' => 'ViewController',
         ]);
     }
@@ -23,7 +23,7 @@ class ViewController extends AbstractController
 
     public function indexDashboard(): Response
     {
-        return $this->render('Back.html.twig');
+        return $this->render('Back/index.html.twig');
     }
     
     /**
@@ -31,6 +31,6 @@ class ViewController extends AbstractController
      */
     public function indexfront(): Response
     {
-        return $this->render('Front.html.twig');
+        return $this->render('base.html.twig');
     }
 }
