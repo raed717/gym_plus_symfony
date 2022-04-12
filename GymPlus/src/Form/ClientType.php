@@ -3,10 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Client;
+use App\Entity\Abonnement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class ClientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -17,7 +18,7 @@ class ClientType extends AbstractType
             ->add('adresse')
             ->add('mail')
             ->add('mdpClient')
-            ->add('idAbonnement')
+            ->add('idAbonnement',EntityType::class,['class' => Abonnement::class,'choice_label'=>'idAbonnement'])
         ;
     }
 
