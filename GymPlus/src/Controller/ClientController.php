@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClientController extends AbstractController
 {
     /**
-     * @Route("/index", name="app_client_index", methods={"GET"})
+     * @Route("/", name="app_client_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
