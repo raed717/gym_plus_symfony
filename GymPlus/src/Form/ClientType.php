@@ -19,7 +19,7 @@ class ClientType extends AbstractType
             ->add('adresse')
             ->add('mail')
             ->add('mdpClient')
-            ->add('idAbonnement',EntityType::class,['class' => Abonnement::class,'choice_label'=>'idAbonnement'])
+            ->add('idAbonnement',EntityType::class,['class' => Abonnement::class,'choice_label'=>'nomAb','label'=>'idAbonnement'])
         ;
     }
 
