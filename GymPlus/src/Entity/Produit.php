@@ -172,13 +172,11 @@ class Produit
      *
      * @return  \Categorie
      */ 
-    public function getIdCategorie(): ?Categorie
+    public function getIdCategorie() 
     {
         return $this->idCategorie;
     }
      
-
-    
 
     /**
      * Set the value of idCategorie
@@ -193,4 +191,6 @@ class Produit
 
         return $this;
     }
+
+     
 }
