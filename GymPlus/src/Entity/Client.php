@@ -4,12 +4,18 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Client
  *
  * @ORM\Table(name="client", indexes={@ORM\Index(name="id_abonnement", columns={"id_abonnement"})})
  * @ORM\Entity
+ * @UniqueEntity(
+ * fields={"mail"},
+ * message="Mail already exists"
+ * )
  */
 class Client implements UserInterface
 {
@@ -54,6 +60,7 @@ class Client implements UserInterface
      * @var string
      *
      * @ORM\Column(name="mdp_client", type="string", length=50, nullable=false)
+     * @Assert\Length(min="8", minMessage="Please enter a password with at least 8 characters")
      */
     private $mdpClient;
 
