@@ -50,4 +50,28 @@ class TabCoach
     private $mdpCoach;
 
 
+
+    /**
+     * Get the value of idCoach
+     *
+     * @return  int
+     */ 
+    public function getIdCoach()
+    {
+        return $this->idCoach;
+    }
+
+    /**
+     * Set the value of idCoach
+     *
+     * @param  int  $idCoach
+     *
+     * @return  self
+     */ 
+    public function setIdCoach(int $idCoach)
+    {
+        $this->idCoach = $idCoach;
+
+        return $this;
+    }
 }

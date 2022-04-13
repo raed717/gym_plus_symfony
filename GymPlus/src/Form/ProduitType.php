@@ -3,9 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use App\Entity\Categorie;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class ProduitType extends AbstractType
 {
@@ -15,7 +21,10 @@ class ProduitType extends AbstractType
             ->add('description')
             ->add('name')
             ->add('price')
-            ->add('idCategorie')
+            ->add('image')
+            ->add('id_categorie')
+
+
         ;
     }
 
