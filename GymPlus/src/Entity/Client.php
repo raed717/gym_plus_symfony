@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Client
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="client", indexes={@ORM\Index(name="id_abonnement", columns={"id_abonnement"})})
  * @ORM\Entity
  */
-class Client
+class Client implements UserInterface
 {
     /**
      * @var int
@@ -237,4 +238,14 @@ class Client
 
         return $this;
     }
+
+
+    public function getRoles(){
+        return ['ROLE_Client'];
+    }
+    public function getPassword(){}
+    public function getSalt(){}
+    public function getUsername(){}
+    public function eraseCredentials(){}
+
 }
