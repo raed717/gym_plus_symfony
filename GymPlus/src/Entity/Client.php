@@ -231,7 +231,7 @@ class Client
      *
      * @return  self
      */ 
-    public function setIdAbonnement(\Abonnement $idAbonnement)
+    public function setIdAbonnement(?Abonnement $idAbonnement)
     {
         $this->idAbonnement = $idAbonnement;
 

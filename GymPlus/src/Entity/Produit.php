@@ -185,12 +185,12 @@ class Produit
      *
      * @return  self
      */ 
-    public function setIdCategorie(\Categorie $idCategorie)
+    public function setIdCategorie(?Categorie $idCategorie)
     {
         $this->idCategorie = $idCategorie;
 
         return $this;
     }
-
-     
+ 
+    
 }
