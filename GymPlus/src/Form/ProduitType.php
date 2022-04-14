@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProduitType extends AbstractType
 {
@@ -21,7 +22,7 @@ class ProduitType extends AbstractType
             ->add('description')
             ->add('name')
             ->add('price')
-            ->add('image')
+            ->add('image',FileType::class)
             ->add('id_categorie',EntityType::class,['class' => Categorie::class,'choice_label'=>'descriptionCategorie','label'=>'idCategorie'])
  
 
