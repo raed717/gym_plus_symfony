@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class ProduitType extends AbstractType
 {
@@ -20,8 +22,8 @@ class ProduitType extends AbstractType
     {
         $builder
             ->add('description')
-            ->add('name')
-            ->add('price')
+             ->add('name' )
+             ->add('price')
             ->add('image',FileType::class,array('data_class' => null,'required' => false))
             ->add('id_categorie',EntityType::class,['class' => Categorie::class,'choice_label'=>'descriptionCategorie','label'=>'idCategorie'])
  
