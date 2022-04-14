@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\TabCoach;
 use App\Entity\TabSeance;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TabSeanceType extends AbstractType
@@ -13,9 +16,17 @@ class TabSeanceType extends AbstractType
     {
         $builder
             ->add('typeSeance')
-            ->add('dateDebut')
-            ->add('dateFin')
-            ->add('idCoach')
+            ->add('dateDebut', DateType::class, [
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ],
+            ])
+            ->add('dateFin', DateType::class, [
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ],
+            ])
+            ->add('idCoach',EntityType::class,['class' => TabCoach::class,'choice_label'=>'nomCoach','label'=>'idCoach'])
         ;
     }
 
