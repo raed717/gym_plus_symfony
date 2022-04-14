@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -23,17 +24,29 @@ class Produit
 
     /**
      * @var string
-     *
+          * @Assert\NotBlank(message=" description doit etre non vide")
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage=" Entrer un description au mini de 5 caracteres"  )
+
      * @ORM\Column(name="description", type="string", length=20, nullable=false)
      */
     private $description;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     * /**
+     * @Assert\NotBlank(message=" name doit etre non vide")
+     * @Assert\Length(
+     *      min = 5,
+     *      minMessage=" Entrer un nom au mini de 5 caracteres"  )
+     * @ORM\Column(type="string", length=255)
      */
-    private $name;
+     private $name;
+
+       
+
+
 
     /**
      * @var float
