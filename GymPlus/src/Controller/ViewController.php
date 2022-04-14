@@ -34,5 +34,12 @@ class ViewController extends AbstractController
         return $this->render('base.html.twig');
     }
 
-    
+    /**
+     * @Route("/prd", name="display_prod")
+     */
+    public function indexProduit(): Response
+    {
+        return $this->render('product/index.html.twig');
+    }
+
 }
