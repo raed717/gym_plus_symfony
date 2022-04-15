@@ -42,4 +42,13 @@ class ViewController extends AbstractController
         return $this->render('product/index.html.twig');
     }
 
+/**
+     * @Route("/panier", name="panier_display")
+     */
+    public function indexCart(): Response
+    {
+        return $this->render('cart/index.html.twig');
+    }
+
+
 }
