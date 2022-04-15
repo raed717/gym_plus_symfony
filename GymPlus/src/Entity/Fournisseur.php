@@ -43,4 +43,100 @@ class Fournisseur
     private $numtel;
 
 
+
+    /**
+     * Get the value of id
+     *
+     * @return  int
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @param  int  $id
+     *
+     * @return  self
+     */ 
+    public function setId(int $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nom
+     *
+     * @return  string
+     */ 
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set the value of nom
+     *
+     * @param  string  $nom
+     *
+     * @return  self
+     */ 
+    public function setNom(string $nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adresse
+     *
+     * @return  string
+     */ 
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set the value of adresse
+     *
+     * @param  string  $adresse
+     *
+     * @return  self
+     */ 
+    public function setAdresse(string $adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of numtel
+     *
+     * @return  int
+     */ 
+    public function getNumtel()
+    {
+        return $this->numtel;
+    }
+
+    /**
+     * Set the value of numtel
+     *
+     * @param  int  $numtel
+     *
+     * @return  self
+     */ 
+    public function setNumtel(int $numtel)
+    {
+        $this->numtel = $numtel;
+
+        return $this;
+    }
 }
