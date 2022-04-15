@@ -16,16 +16,8 @@ class TabSeanceType extends AbstractType
     {
         $builder
             ->add('typeSeance')
-            ->add('dateDebut', DateType::class, [
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                ],
-            ])
-            ->add('dateFin', DateType::class, [
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                ],
-            ])
+            ->add('dateDebut')
+            ->add('dateFin')
             ->add('idCoach',EntityType::class,['class' => TabCoach::class,'choice_label'=>'nomCoach','label'=>'idCoach'])
         ;
     }
