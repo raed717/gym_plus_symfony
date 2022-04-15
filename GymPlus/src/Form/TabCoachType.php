@@ -6,6 +6,8 @@ use App\Entity\TabCoach;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class TabCoachType extends AbstractType
 {
@@ -14,8 +16,8 @@ class TabCoachType extends AbstractType
         $builder
             ->add('nomCoach')
             ->add('specialite')
-            ->add('mail')
-            ->add('mdpCoach')
+            ->add('mail',EmailType::class)
+            ->add('mdpCoach', PasswordType::class)
         ;
     }
 
