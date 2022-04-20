@@ -33,6 +33,15 @@ class ViewController extends AbstractController
     {
         return $this->render('Back/music.html.twig');
     }
+
+    
+        /**
+     * @Route("/seance", name="seance")
+     */
+    public function seance_view(): Response
+    {
+        return $this->render('tab_seance/seance_front.html.twig');
+    }
     
     /**
      * @Route("/front", name="display_front")

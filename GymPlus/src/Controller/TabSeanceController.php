@@ -61,6 +61,8 @@ class TabSeanceController extends AbstractController
         ]);
     }
 
+    
+
     /**
      * @Route("/{idSeance}/edit", name="app_tab_seance_edit", methods={"GET", "POST"})
      */
