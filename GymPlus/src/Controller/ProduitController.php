@@ -42,7 +42,7 @@ class ProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
  
 
-            $file=$produit->getImage();
+            $file= $form->get('image')->getData();
                        
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
          try {
