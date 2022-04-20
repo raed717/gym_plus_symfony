@@ -41,23 +41,8 @@ class ProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
  
-
-            $file= $form->get('image')->getData();
-                       
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-         try {
-           $file->move(
-            $this->getParameter('images_directory'), $fileName); 
-        }catch (FileException $e){
-        }
-
-
-        $entityManager=$this->getDoctrine()->getManager();
-             
-             $produit->setImage($fileName);
             $entityManager->persist($produit);
             $entityManager->flush();
-
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
 
