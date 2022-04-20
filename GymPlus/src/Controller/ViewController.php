@@ -17,13 +17,21 @@ class ViewController extends AbstractController
             'controller_name' => 'ViewController',
         ]);
     }
+
     /**
      * @Route("/dashboard", name="display_Dashboard")
      */
-
     public function indexDashboard(): Response
     {
         return $this->render('Back/index.html.twig');
+    }
+
+        /**
+     * @Route("/music", name="music_player")
+     */
+    public function music_player(): Response
+    {
+        return $this->render('Back/music.html.twig');
     }
     
     /**
