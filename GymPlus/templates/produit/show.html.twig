@@ -23,6 +23,15 @@
                 <th>Price</th>
                 <td>{{ produit.price }}</td>
             </tr>
+
+            <tr>
+                <th>Image</th>
+                <td>{{ produit.image }}</td>
+                <td> <img src="{{ asset('photos/' ~ produit.image)}}" 
+                alt style="width: 50px; height: 50px" ></td>
+
+
+             </tr>
             
         </tbody>
     </table>
@@ -32,4 +41,5 @@
     <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
 
     {{ include('produit/_delete_form.html.twig') }}
+
 {% endblock %}

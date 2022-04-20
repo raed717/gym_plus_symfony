@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/produit")
  */
@@ -39,6 +40,21 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+ 
+
+            $file=$produit->getImage();
+                       
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+         try {
+           $file->move(
+            $this->getParameter('images_directory'), $fileName); 
+        }catch (FileException $e){
+        }
+
+
+        $entityManager=$this->getDoctrine()->getManager();
+             
+             $produit->setImage($fileName);
             $entityManager->persist($produit);
             $entityManager->flush();
 

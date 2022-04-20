@@ -3,6 +3,8 @@
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 
 /**
@@ -67,22 +69,12 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * Assert\NotBlank(message="please upload image")
+     * Assert\File(mimeTypes={"image/jpeg"})
      */
     private $image;
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-
+   
 
     /**
      * Get the value of id
@@ -206,4 +198,20 @@ class Produit
     }
  
     
+
+    
+
+     
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 }
