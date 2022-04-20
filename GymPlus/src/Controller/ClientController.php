@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Client;
 use App\Form\ClientType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/client")
@@ -49,6 +53,43 @@ class ClientController extends AbstractController
             'client' => $client,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/listc", name="client_list", methods={"GET"})
+     */
+    public function list(EntityManagerInterface $entityManager): Response
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        
+        $clients = $entityManager
+            ->getRepository(Client::class)
+            ->findAll();
+
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('client/ListClient.html.twig', [
+            'client' => $clients,
+        ]);
+        
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("Clients.pdf", [
+            "Attachment" => false
+        ]);
+
     }
 
     /**
