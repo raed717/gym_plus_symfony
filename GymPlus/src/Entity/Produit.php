@@ -196,19 +196,14 @@ class Produit
 
         return $this;
     }
- 
-    
 
     
-
-     
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    
-    public function setImage($image)
+    public function setImage(string $image): self
     {
         $this->image = $image;
 

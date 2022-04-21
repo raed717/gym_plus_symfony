@@ -40,7 +40,10 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
- 
+
+           
+            $em=$this->getDoctrine()->getManager();
+
             $entityManager->persist($produit);
             $entityManager->flush();
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
