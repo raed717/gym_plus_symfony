@@ -105,19 +105,7 @@ class ProduitController extends AbstractController
     }
 
 
-     /**
-     * @Route("/", name="app_produit_view", methods={"GET"})
-     */
-    public function indexView(EntityManagerInterface $entityManager): Response
-    {
-        $produits = $entityManager
-            ->getRepository(Produit::class)
-            ->findAll();
-
-        return $this->render('product/index.html.twig', [
-            'produits' => $produits,
-        ]);
+     
     }
 
 
-}

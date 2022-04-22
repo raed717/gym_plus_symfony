@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Produit;
+use App\Form\ProduitType;
 
 class ViewController extends AbstractController
 {
@@ -50,15 +53,20 @@ class ViewController extends AbstractController
     {
         return $this->render('base.html.twig');
     }
-
-    /**
-     * @Route("/prd", name="display_prod")
+/**
+     * @Route("/prd", name="app_produit_view", methods={"GET"})
      */
-    public function indexProduit(): Response
+    public function indexView(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('product/index.html.twig');
-    }
+        $produits = $entityManager
+            ->getRepository(Produit::class)
+            ->findAll();
+         return $this->render('product/index.html.twig', [
+            'produits' => $produits
+        ]);
 
+
+    }
 /**
      * @Route("/panier", name="panier_display")
      */
