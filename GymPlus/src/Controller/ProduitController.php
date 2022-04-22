@@ -104,14 +104,4 @@ class ProduitController extends AbstractController
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
 
-
-<<<<<<< HEAD
-     
-    }
-
-
-=======
-    
-     
 }
->>>>>>> b46e45ec2727bb2180197b884be027d7dfe1fdcf
