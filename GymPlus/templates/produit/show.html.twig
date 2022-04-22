@@ -23,13 +23,13 @@
                 <th>Price</th>
                 <td>{{ produit.price }}</td>
             </tr>
-
+            
             <tr>
                 <th>Image</th>
-                <td>{{ produit.image }}</td>
- 
-                 <td>  
-                  </td>
+              <td>   <img src="{{ asset('uploads/' ~ produit.image) }}"  style="width: 100px; height: 100px"></td>
+
+                  
+                   
              </tr>
             
         </tbody>

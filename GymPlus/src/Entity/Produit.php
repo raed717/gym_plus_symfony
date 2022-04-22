@@ -4,6 +4,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 
 
@@ -12,6 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
  *
  * @ORM\Table(name="produit", indexes={@ORM\Index(name="id_categorie", columns={"id_categorie"})})
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Produit
 {
@@ -69,12 +72,12 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * Assert\NotBlank(message="please upload image")
-     * Assert\File(mimeTypes={"image/jpeg"})
-     */
+     * @Assert\File 
+      */
     private $image;
 
-   
+ 
+     
 
     /**
      * Get the value of id
@@ -198,15 +201,13 @@ class Produit
     }
 
     
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
+    public function setImage($image)
     {
         $this->image = $image;
+    }
 
-        return $this;
+    public function getImage()
+    {
+        return $this->image;
     }
 }
