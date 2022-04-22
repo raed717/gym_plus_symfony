@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
  
 
 class SecurityController extends AbstractController
@@ -43,6 +44,20 @@ class SecurityController extends AbstractController
      * @Route("/security_login", name="security_login")
      */
     public function login(): Response{
+
+        $session = new Session();
+        // set and get session attributes
+        $session->set('name', 'Drak');
+        $session->get('name');
+
+        // set flash messages
+        $session->getFlashBag()->add('notice', 'Profile updated');
+        foreach ($session->getFlashBag()->get('notice', []) as $message) {
+            echo '<div class="flash-notice">'.$message.'</div>';
+        }
+
+
+
         return $this->render('security/login.html.twig');
 
     }

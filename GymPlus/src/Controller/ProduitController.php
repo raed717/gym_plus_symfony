@@ -105,7 +105,13 @@ class ProduitController extends AbstractController
     }
 
 
+<<<<<<< HEAD
      
     }
 
 
+=======
+    
+     
+}
+>>>>>>> b46e45ec2727bb2180197b884be027d7dfe1fdcf
