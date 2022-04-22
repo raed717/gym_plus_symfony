@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="row">
+  <!-- our protien  -->
 
-{% for produit in produits %}
 
-<div class="card text-dark bg-light mb-7" style="width: 30rem;">
+       
+                     <h2>Our Protien</h2>
+                  
+  {% for produit in produits %}
 
-  
-        <div class="tz-gallery">
+                      <a class="lightbox" href="{{ asset('uploads/' ~ produit.image)  }}">
+                     <figure><img src="{{ asset('uploads/' ~ produit.image) }}" alt="#"/></figure>
+                     <h3> {{ produit.price  }} TND</h3>
+                     <h4> </h4>
+                     <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
+                  </div>
+               </div>
+               
+      <!-- end our protien  -->
+      {% endfor %}
 
-                     <a class="lightbox" href="{{ asset('uploads/' ~ produit.image)  }}">
-                        <img class="card-img-top" src="{{ asset('uploads/' ~ produit.image) }}" alt=" "  style="width: 100px; height: 100px">
-                     </a>
-        </div>
-<div class="card-body">
-                    <h5 class="card-title">{{ produit.description  }}</h5>
-                    <p class="card-text">{{ produit.price  }}</p>
-             </div>
- 
-{% endfor %}
 
  {% endblock %}
 
