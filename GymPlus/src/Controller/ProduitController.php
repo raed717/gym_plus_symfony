@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 
 /**
@@ -40,12 +42,16 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+            $filename= md5(uniqid()).'.'.$file->guessExtension();
 
-           
-            $em=$this->getDoctrine()->getManager();
 
-            $entityManager->persist($produit);
-            $entityManager->flush();
+            $em = $this->getDoctrine()->getManager();
+             $em->persist($produit);
+             $produit->setImage($filename); 
+             $file->move($this->getParameter('images_directory'), $filename);
+
+            $em->flush();
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -97,4 +103,21 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    
+     /**
+     * @Route("/in", name="app_produit_index", methods={"GET"})
+     */
+    public function indexProd(EntityManagerInterface $entityManager): Response
+    {
+        $produits = $entityManager
+            ->getRepository(Produit::class)
+            ->findAll();
+
+        return $this->render('product/index.html.twig', [
+            'produits' => $produits,
+        ]);
+
+
 }
