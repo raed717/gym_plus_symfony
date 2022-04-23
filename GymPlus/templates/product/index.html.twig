@@ -13,8 +13,8 @@
                      <figure><img src="{{ asset('uploads/' ~ produit.image) }}" alt="#"/></figure>
                      <h3> {{ produit.price  }} TND</h3>
                      <h4> </h4>
-                     <a class="read_more mar_top" href="Javascript:void(0)"> Buy Now</a>
-                  </div>
+                      <a href="{{path("add", {id: produit.id})}}" class=" ">
+                        <i class="bi bi-cart-plus"></i> BuyNow  </div>
                </div>
                
       <!-- end our protien  -->
