@@ -58,6 +58,7 @@ document.getElementById("date").innerHTML = Date();
 										<td>
 											<a href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
 											<a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+											<a href="{{ path('client_list') }}">PDF</a>
 										</td>
 									</tr>
 								{% else %}
@@ -65,7 +66,7 @@ document.getElementById("date").innerHTML = Date();
 										<td colspan="7">no records found</td>
 									</tr>
 								{% endfor %}
-								<a href="{{ path('client_list') }}">PDF</a>
+								
 							</tbody>
 						</table>
 						<!-- End Table with stripped rows -->
