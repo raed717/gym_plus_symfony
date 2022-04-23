@@ -62,9 +62,14 @@ class ClientController extends AbstractController
     {
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->set('isRemoteEnabled', true);
+        $pdfOptions->set('isHtml5ParserEnabled', true);
+        $pdfOptions->setTempDir('temp');
         
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
+
+        $fn = sprintf('credit-%s.pdf', date('c'));
         
         $clients = $entityManager
             ->getRepository(Client::class)
@@ -86,9 +91,8 @@ class ClientController extends AbstractController
         $dompdf->render();
 
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream("Clients.pdf", [
-            "Attachment" => false
-        ]);
+        $dompdf->stream($fn, ['Attachment' => 0]);
+
 
     }
 
