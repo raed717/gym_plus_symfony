@@ -27,10 +27,20 @@ class PanierController extends AbstractController
     public function add(Produit $produit, SessionInterface $session)
     {
 
-                 $panier = $session->get("panier",[]);
- 
-         dd($panier);
-           
+        $panier = $session->get("panier", []);
+        $id = $produit->getId();
+
+        if(!empty($panier[$id])){
+            $panier[$id]++;
+        }else{
+            $panier[$id] = 1;
+        }
+
+          dd($panier);
+
+          $session->set("panier", $panier);
+
+        return $this->redirectToRoute("panier/index.html.twig");
     }       
     
 }
