@@ -256,8 +256,8 @@ class Client implements UserInterface, \Serializable
        {
            return serialize(array(
                $this->id,
-               $this->username,
-               $this->password,
+               $this->mail,
+               $this->mdpClient,
                // see section on salt below
                // $this->salt,
            ));
@@ -268,8 +268,8 @@ class Client implements UserInterface, \Serializable
        {
            list (
                $this->id,
-               $this->username,
-               $this->password,
+               $this->mail,
+               $this->mdpClient,
                // see section on salt below
                // $this->salt
            ) = unserialize($serialized, array('allowed_classes' => false));
