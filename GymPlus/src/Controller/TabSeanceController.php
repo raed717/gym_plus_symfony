@@ -55,7 +55,11 @@ class TabSeanceController extends AbstractController
      * @Route("/{idSeance}", name="app_tab_seance_show", methods={"GET"})
      */
     public function show(TabSeance $tabSeance): Response
+
     {
+        $TabSeances = $entityManager
+            ->getRepository(TabSeance::class)
+            ->findAll();
         return $this->render('tab_seance/show.html.twig', [
             'tab_seance' => $tabSeance,
         ]);
