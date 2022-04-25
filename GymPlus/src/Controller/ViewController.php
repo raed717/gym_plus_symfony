@@ -53,6 +53,15 @@ class ViewController extends AbstractController
     {
         return $this->render('base.html.twig');
     }
+
+        /**
+     * @Route("/imc", name="imc_calculator")
+     */
+    public function imc(): Response
+    {
+        return $this->render('client/imc.html.twig');
+    }
+
 /**
      * @Route("/prd", name="app_produit_view", methods={"GET"})
      */
