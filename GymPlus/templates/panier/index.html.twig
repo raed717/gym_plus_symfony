@@ -33,12 +33,28 @@
                 <tr>
                     <td>{{ element.produit.name }}</td>
                                         <td class="text-end">{{ element.produit.price }} €</td>
+
+                                        
     
 <td>{{ element.quantite }}</td>
                     <td class="text-end">{{ element.quantite * element.produit.price }} €</td>
-                    
+
+
+                    <td>
+                        <a href="{{path("add", {id: element.produit.id})}}" class="btn btn-success">
+                            <i class="bi bi-cart-plus"></i>
+                        </a>
+                        <a href="{{path("remove", {id: element.produit.id})}}" class="btn btn-warning">
+                            <i class="bi bi-cart-dash"></i>
+                        </a>
+                        <a href="{{path("delete", {id: element.produit.id})}}" class="btn btn-danger">
+                            <i class="bi bi-cart-x"></i>
+                        </a>
+                    </td>
                 </tr>
             {% else %}
+                
+                
                 <tr>
                     <td colspan="5" class="text-center">Votre panier est vide</td>
                 </tr>
@@ -48,10 +64,13 @@
             <tr>
                 <td colspan="3">Total</td>
                 <td class="text-end">{{ total }} €</td>
-                <td>
-                         <i class="bi bi-cart-x"></i>
+
+                 <td>
+                    <a href="{{path("delete_all")}}" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
                     </a>
                 </td>
+                 
             </tr>
         </tfoot>
     </table>
