@@ -72,7 +72,7 @@ class ViewController extends AbstractController
      */
     public function indexCart(): Response
     {
-        return $this->render('cart/index.html.twig');
+        return $this->render('panier/index.html.twig');
     }
 
 

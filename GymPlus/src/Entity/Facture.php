@@ -38,5 +38,34 @@ class Facture
      */
     private $id;
 
+    public function getIdF(): ?int
+    {
+        return $this->idF;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getId(): ?Produit
+    {
+        return $this->id;
+    }
+
+    public function setId(?Produit $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
 
 }

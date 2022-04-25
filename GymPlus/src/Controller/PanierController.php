@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Controller;
 
+namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,19 +14,41 @@ class PanierController extends AbstractController
     /**
      * @Route("/panier", name="app_panier_")
      */
-    public function index(): Response
-    {
-        return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController',
-        ]);
-    }
+   
 
-/**
+        public function index(SessionInterface $session,ProduitRepository $produitRepository): Response
+
+        {
+            $panier = $session->get("panier", []);
+    
+            // On "fabrique" les données
+            $dataPanier = [];
+            $total = 0;
+    
+            foreach($panier as $id => $quantite){
+                $produit = $produitRepository->find($id);
+                $dataPanier[] = [
+                    "produit" => $produit,
+                    "quantite" => $quantite
+                ];
+                $total += $produit->getPrice() * $quantite;
+            }
+    
+            
+            return $this->render('panier/index.html.twig', compact("dataPanier", "total"));
+    
+        }
+
+
+         
+
+
+         /**
      * @Route("/add/{id}", name="add")
      */
     public function add(Produit $produit, SessionInterface $session)
     {
-
+        // On récupère le panier actuel
         $panier = $session->get("panier", []);
         $id = $produit->getId();
 
@@ -36,13 +58,16 @@ class PanierController extends AbstractController
             $panier[$id] = 1;
         }
 
-          dd($panier);
+        // On sauvegarde dans la session
+        $session->set("panier", $panier);
 
-          $session->set("panier", $panier);
+        return $this->redirectToRoute("app_panier_");
+    }
+    }
 
-        return $this->redirectToRoute("panier/index.html.twig");
-    }       
-    
-}
+
+
+
+
 
 

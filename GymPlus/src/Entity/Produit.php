@@ -13,8 +13,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * Produit
  *
  * @ORM\Table(name="produit", indexes={@ORM\Index(name="id_categorie", columns={"id_categorie"})})
- * @ORM\Entity
- * @Vich\Uploadable
+ * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ *  
  */
 class Produit
 {
