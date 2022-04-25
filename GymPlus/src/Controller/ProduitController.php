@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,10 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+ 
 
 
-
-/**
+ /**
  * @Route("/produit")
  */
 class ProduitController extends AbstractController
@@ -21,7 +20,7 @@ class ProduitController extends AbstractController
     /**
      * @Route("/", name="app_produit_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $produits = $entityManager
             ->getRepository(Produit::class)

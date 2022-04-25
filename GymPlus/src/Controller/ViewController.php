@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use Knp\Component\Pager\PaginatorInterface; 
+use Symfony\Component\HttpFoundation\Request; 
+
 
 class ViewController extends AbstractController
 {
@@ -65,11 +68,20 @@ class ViewController extends AbstractController
 /**
      * @Route("/prd", name="app_produit_view", methods={"GET"})
      */
-    public function indexView(EntityManagerInterface $entityManager): Response
+    public function indexView(EntityManagerInterface $entityManager,PaginatorInterface $paginator,Request $request): Response
     {
-        $produits = $entityManager
+
+
+        $donnees = $entityManager
             ->getRepository(Produit::class)
             ->findAll();
+
+            $produits = $paginator->paginate(
+                $donnees, // Requête contenant les données à paginer (ici nos articles)
+                $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+                4// Nombre de résultats par page
+            );
+    
          return $this->render('product/index.html.twig', [
             'produits' => $produits
         ]);
