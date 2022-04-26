@@ -97,6 +97,18 @@
     "guzzlehttp/psr7": {
         "version": "2.2.1"
     },
+    "illuminate/collections": {
+        "version": "v8.83.9"
+    },
+    "illuminate/contracts": {
+        "version": "v8.83.9"
+    },
+    "illuminate/macroable": {
+        "version": "v8.83.9"
+    },
+    "illuminate/support": {
+        "version": "v8.83.9"
+    },
     "jms/metadata": {
         "version": "2.6.1"
     },
@@ -130,11 +142,17 @@
     "league/oauth2-google": {
         "version": "4.0.0"
     },
+    "mercuryseries/flashy": {
+        "version": "1.0.4"
+    },
     "monolog/monolog": {
         "version": "1.27.0"
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
+    },
+    "nesbot/carbon": {
+        "version": "2.57.0"
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
@@ -212,6 +230,9 @@
     },
     "psr/log": {
         "version": "1.1.4"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
@@ -674,6 +695,9 @@
         "files": [
             "./config/packages/vich_uploader.yaml"
         ]
+    },
+    "voku/portable-ascii": {
+        "version": "1.6.1"
     },
     "webmozart/assert": {
         "version": "1.10.0"

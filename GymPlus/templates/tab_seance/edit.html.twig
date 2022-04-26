@@ -4,7 +4,11 @@
 
 {% block body %}
     <h1>Edit TabSeance</h1>
-
+{% for message in app.flashes('info') %}
+<div class="alert alert.warning">
+{{ message }}
+</div>
+{% endfor %}
     {{ include('tab_seance/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_tab_seance_index') }}">back to list</a>

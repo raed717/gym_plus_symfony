@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManager;
 
 /**
  * @Route("/tab/seance")
@@ -42,6 +43,11 @@ class TabSeanceController extends AbstractController
             $entityManager->persist($tabSeance);
             $entityManager->flush();
 
+            
+            $this->addFlash(
+            'info','seance ajouté'
+            );
+
             return $this->redirectToRoute('app_tab_seance_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -57,9 +63,7 @@ class TabSeanceController extends AbstractController
     public function show(TabSeance $tabSeance): Response
 
     {
-        $TabSeances = $entityManager
-            ->getRepository(TabSeance::class)
-            ->findAll();
+        
         return $this->render('tab_seance/show.html.twig', [
             'tab_seance' => $tabSeance,
         ]);
@@ -77,7 +81,9 @@ class TabSeanceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash(
+                'info','seance modifié'
+                );
             return $this->redirectToRoute('app_tab_seance_index', [], Response::HTTP_SEE_OTHER);
         }
 
