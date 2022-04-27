@@ -97,6 +97,19 @@ class ClientController extends AbstractController
     }
 
     /**
+     * @Route("/TrierParNomDESC", name="TrierParNomDESC")
+     */
+    public function TrierParNom(Request $request): Response
+    {
+        $repository = $this->getDoctrine()->getRepository(Client::class);
+        $client = $repository->findByName();
+
+        return $this->render('coach/index.html.twig', [
+            'client' => $client,
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="app_client_show", methods={"GET"})
      */
     public function show(Client $client): Response
