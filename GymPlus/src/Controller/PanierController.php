@@ -61,7 +61,7 @@ class PanierController extends AbstractController
         // On sauvegarde dans la session
         $session->set("panier", $panier);
 
-        return $this->redirectToRoute("app_panier_");
+        return $this->redirectToRoute("app_produit_view");
     }
 
  /**
