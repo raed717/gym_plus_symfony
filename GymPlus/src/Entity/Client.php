@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -75,7 +77,14 @@ class Client implements UserInterface, \Serializable
     private $idAbonnement;
 
     
-
+    public function findByName()
+    {
+        return $this->entityManager->createQueryBuilder('client')
+            ->orderBy('client.nom','DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
 
     /**
