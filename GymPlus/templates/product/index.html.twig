@@ -19,8 +19,10 @@
                
       <!-- end our protien  -->
       {% endfor %}
-    {{ knp_pagination_render(produits) }}
+      <div class ="navigation"> 
+      {{ knp_pagination_render(produits,'pagination.html.twig') }}
 
+      </div>
 
  {% endblock %}
 
