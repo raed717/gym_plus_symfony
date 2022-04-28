@@ -67,6 +67,14 @@ class ViewController extends AbstractController
     }
 
     /**
+     * @Route("/map", name="map")
+     */
+    public function map(): Response
+    {
+        return $this->render('Map/maps.html.twig');
+    }
+
+    /**
      * @Route("/Abonnement_Front", name="Abonnement_Front")
      */
     public function Abonnement_Front(EntityManagerInterface $entityManager,PaginatorInterface $paginator,Request $request): Response

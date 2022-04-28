@@ -15,6 +15,7 @@
         "league/oauth2-facebook": "^2.2",
         "league/oauth2-google": "^4.0",
         "mercuryseries/flashy": "^1.0",
+        "mercuryseries/flashy-bundle": "3.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "sensio/framework-extra-bundle": "^5.1",
         "sonata-project/exporter": "^2.11",
