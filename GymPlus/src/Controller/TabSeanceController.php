@@ -102,7 +102,6 @@ class TabSeanceController extends AbstractController
             $entityManager->remove($tabSeance);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('app_tab_seance_index', [], Response::HTTP_SEE_OTHER);
     }
 }

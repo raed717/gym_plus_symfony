@@ -2,8 +2,10 @@
 
  
 {% block body %}
-<h1>TabSeance index</h1>
 
+{% block stylesheets %}
+        <link href="{{ asset('public/templates/frontseance/style.css') }}" type="text/css" rel="stylesheet" />
+    {% endblock %}
     <table class="table">
         <thead>
             <tr>
@@ -11,7 +13,7 @@
                 <th>TypeSeance</th>
                 <th>DateDebut</th>
                 <th>DateFin</th>
-                <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -31,6 +33,9 @@
 
         </tbody>
     </table>
+    <div class="navigation">
+            {{ knp_pagination_render(TabSeances) }}
+        </div>
 
    
 {% endblock %}

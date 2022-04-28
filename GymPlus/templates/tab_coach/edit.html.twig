@@ -4,6 +4,11 @@
 
 {% block body %}
     <h1>Edit TabCoach</h1>
+    {% for message in app.flashes('info') %}
+<div class="alert alert-succes">
+{{ message }}
+</div>
+{% endfor %}
 
     {{ include('tab_coach/_form.html.twig', {'button_label': 'Update'}) }}
 

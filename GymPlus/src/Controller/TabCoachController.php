@@ -41,7 +41,9 @@ class TabCoachController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($tabCoach);
             $entityManager->flush();
-
+            $this->addFlash(
+                'info','coach ajouté'
+                );
             return $this->redirectToRoute('app_tab_coach_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -71,6 +73,9 @@ class TabCoachController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $this->addFlash(
+                'info','coach modifié'
+                );
 
             return $this->redirectToRoute('app_tab_coach_index', [], Response::HTTP_SEE_OTHER);
         }
