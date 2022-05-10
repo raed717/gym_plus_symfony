@@ -28,7 +28,7 @@ class MobileProduitController extends AbstractController
      * @Route("/addProduit", name="add_Produit")
      * @Method("POST")
      */
-    public function ajouterProduitAction(Request $request)
+    public function ajouterProduit(Request $request)
     {
         $produit = new Produit();
 
