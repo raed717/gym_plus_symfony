@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Validator\Constraints\Json;
 use Doctrine\ORM\EntityManagerInterface;
 
-class MobileProduitController extends AbstractController
+class MobileSeanceController extends AbstractController
 {
 
         ////////////////////////////////////////////::Jason for CodeNameOne::////////////////////////////////////////////
@@ -42,7 +42,7 @@ class MobileProduitController extends AbstractController
         $em->persist($tabSeance);
         $em->flush();
         $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($produit);
+        $formatted = $serializer->normalize($tabSeance);
         return new JsonResponse($formatted);
 
 }
@@ -53,7 +53,7 @@ class MobileProduitController extends AbstractController
     {
         $tabSeance = $this->getDoctrine()->getRepository(TabSeance::class)->findAll();
         $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($produit);
+        $formatted = $serializer->normalize($tabSeance);
 
         return new JsonResponse($formatted);
     }
@@ -84,13 +84,12 @@ class MobileProduitController extends AbstractController
      */
     public function modifierTabSeances(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $tabSeance = $this->getDoctrine()->getManager()->getRepository(tabSeance::class)->find($request->get("idSenace"));
+        $TabSeance = $this->getDoctrine()->getManager()->getRepository(tabSeance::class)->find($request->get("idSeance"));
 
         $TabSeance->setTypeSeance($request->query->get("typeSeance"));
         $TabSeance->setDateDebut($request->query->get("dateDebut"));
         $TabSeance->setDateFin($request->query->get("dateFin"));
-        $TabSeance->setIdCoach($request->query->get("idCoach"));;
-
+        
         $em->persist($TabSeance);
         $em->flush();
         $serializer = new Serializer([new ObjectNormalizer()]);
