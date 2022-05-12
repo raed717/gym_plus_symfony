@@ -8,6 +8,8 @@
   <title>Dashboard - GymPlus</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+
     {% block css %}
 
   <!-- Favicons -->
@@ -15,6 +17,7 @@
   <link href="assets_back/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
+  
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -52,11 +55,14 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+ 
+
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
+    {% block javascripts %}{% endblock %}
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -1032,6 +1038,8 @@
       </div>
     </section>
     {% endblock %}
+         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
 
   </main><!-- End #main -->
 
@@ -1063,6 +1071,7 @@
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'>
   <script src="{{ asset('script_music.js') }}"></script>
+
   
   <!-- Template Main JS File -->
   <script src="{{ asset('assets_back/js/main.js') }}"></script>
