@@ -19,7 +19,7 @@ class AbonnementController extends AbstractController
      * @Route("/", name="app_abonnement_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
-    {
+    { 
         $abonnements = $entityManager
             ->getRepository(Abonnement::class)
             ->findAll();
@@ -41,6 +41,10 @@ class AbonnementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($abonnement);
             $entityManager->flush();
+
+            $this->addFlash(
+                'info','Session Added !'
+                );
 
             return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -72,6 +76,10 @@ class AbonnementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash(
+                'info','Session Updated !'
+                );
+
             return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -89,6 +97,8 @@ class AbonnementController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$abonnement->getIdAbonnement(), $request->request->get('_token'))) {
             $entityManager->remove($abonnement);
             $entityManager->flush();
+
+            
         }
 
         return $this->redirectToRoute('app_abonnement_index', [], Response::HTTP_SEE_OTHER);
