@@ -6,6 +6,7 @@ use App\Entity\Materiel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class MaterielType extends AbstractType
 {
@@ -15,6 +16,12 @@ class MaterielType extends AbstractType
             ->add('nom')
             ->add('prix')
             ->add('etat')
+            ->add('image', FileType::class,[
+
+                'mapped' => false
+
+
+            ])
         ;
     }
 

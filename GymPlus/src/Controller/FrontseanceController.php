@@ -27,7 +27,7 @@ class FrontseanceController extends Controller
                 // Define the page parameter
                 $request->query->getInt('page', 1),
                 // Items per page
-                7
+                2
             );
 
         return $this->render('frontseance/index.html.twig', [
