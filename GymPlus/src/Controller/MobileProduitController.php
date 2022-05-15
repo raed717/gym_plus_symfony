@@ -48,15 +48,15 @@ class MobileProduitController extends AbstractController
 
 }
 /**
-     * @Route("/AfficherProduits", name="AffichagePrd")
+     * @Route("/AfficherProduits", name="AfficherProduits")
      */
     public function AffichageProduits( NormalizerInterface  $normalizer)
     {
-        $produit = $this->getDoctrine()->getRepository(Produit::class)->findAll();
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($produit);
+        $produit = $this->getDoctrine()->getManager()->getRepository(Produit::class)->findAll();
+         $serializer=new Serializer ([new ObjectNormalizer()]);
+         $formatted = $serializer->normalize($produit);
 
-        return new JsonResponse($formatted);
+            return new JsonResponse($formatted);
     }
 
 /**
@@ -100,5 +100,26 @@ class MobileProduitController extends AbstractController
         return new JsonResponse("Produit a ete modifiee avec success.");
 
     }
+
+     /**
+      * @Route("/detailProduit", name="detail_reclamation")
+      * @Method("GET")
+      */
+
+      public function detailProduit(Request $request)
+     {
+         $id = $request->get("id");
+
+         $em = $this->getDoctrine()->getManager();
+         $produit = $this->getDoctrine()->getManager()->getRepository(Produit::class)->find($id);
+         $encoder = new JsonEncoder();
+         $normalizer = new ObjectNormalizer();
+         $normalizer->setCircularReferenceHandler(function ($object) {
+             return $object->getDescription();
+         });
+         $serializer = new Serializer([$normalizer], [$encoder]);
+         $formatted = $serializer->normalize($reclamation);
+         return new JsonResponse($formatted);
+     }
 
 }

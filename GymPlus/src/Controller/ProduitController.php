@@ -56,6 +56,8 @@ class ProduitController extends AbstractController
              $file->move($this->getParameter('images_directory'), $filename);
 
             $em->flush();
+            $this->addFlash(
+                'info','produit ajouté');
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
 
