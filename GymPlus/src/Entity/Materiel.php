@@ -42,6 +42,11 @@ class Materiel
      */
     private $etat;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
 
 
     /**
@@ -136,6 +141,18 @@ class Materiel
     public function setEtat(string $etat)
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

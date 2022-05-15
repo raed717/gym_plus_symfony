@@ -9,6 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use App\Repository\FournisseurRepository;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 
 /**
  * @Route("/fournisseur")
@@ -20,13 +25,24 @@ class FournisseurController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
-        $fournisseurs = $entityManager
-            ->getRepository(Fournisseur::class)
-            ->findAll();
+        $fournisseurs = $entityManager->getRepository(Fournisseur::class)->findAll();
 
         return $this->render('fournisseur/index.html.twig', [
             'fournisseurs' => $fournisseurs,
         ]);
+    }
+
+
+
+    /**
+     * @Route("/getfournisseurjson", name="getfournisseurjson")
+     */
+    public function getfournisseurjson(EntityManagerInterface $entityManager,NormalizerInterface $Normalizer): Response
+    {
+        $fournisseurs = $entityManager->getRepository(Fournisseur::class)->findAll();
+
+        $jsonContent=$Normalizer->normalize($fournisseurs,'json',['groups'=>'post:read']);
+        return new Response(json_encode($jsonContent,JSON_UNESCAPED_UNICODE));
     }
 
     /**
@@ -92,5 +108,39 @@ class FournisseurController extends AbstractController
         }
 
         return $this->redirectToRoute('app_fournisseur_index', [], Response::HTTP_SEE_OTHER);
+    }
+    /**
+     * @Route("/pdf/{id}", name="app_fournisseur_pdf", requirements={"id"="\d+"})
+     */
+
+    public function list(FournisseurRepository $fournisseurRepository, Request $request): Response
+    {
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $Fournisseur=$fournisseurRepository->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('fournisseur/pdf.html.twig', [
+            'Fournisseur' => $Fournisseur,
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A3', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("Fournisseur.pdf", [
+            "Attachment" => false
+        ]);
+
     }
 }
